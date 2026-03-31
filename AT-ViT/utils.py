@@ -32,10 +32,11 @@ def load_config():
         'background_noise_seg_dir': Path(os.getenv("SEGMENTED_NOISY_BASE_DIR")) / "background_only",
         'plant_noise_seg_dir': Path(os.getenv("SEGMENTED_NOISY_BASE_DIR")) / "plant_only",
         'batch_size': 16,
-        'num_epochs': 70,
+        'num_epochs': 3,
         'learning_rate': 5e-5,
         'weight_decay': 0.1,
-        'device': torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+        # cuda 0 for personnal computer
+        'device': torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     }
     config['results_dir'].mkdir(exist_ok=True)
     return config

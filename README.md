@@ -42,7 +42,7 @@ AT-ViT-main/
 ### Install dependencies
 
 ```bash
-pip install torch torchvision pandas matplotlib scikit-learn timm 
+pip install torch torchvision pandas matplotlib scikit-learn timm opencv-python seaborn dotenv grad-cam ipykernel
 ```
 
 ### Clone the repository
@@ -105,3 +105,6 @@ If you use this work, please cite the following:
 
 
 
+## Ajouts pfe
+
+J'ai rajouté un script ```recreateCSV.py``` pour recréer le fichier CSV nécessaire en plus du dataset. 
