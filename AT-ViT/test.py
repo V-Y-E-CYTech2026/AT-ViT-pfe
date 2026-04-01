@@ -112,7 +112,7 @@ def evaluate_noisy_datasets(model, test_df, criterion, config):
 
     for dataset_name, loader in noisy_loaders.items():
         print(f"\nEvaluating on {dataset_name} dataset...")
-        metrics = evaluate_model(model, loader, criterion, config, dataset_name)
+        metrics, _, _ = evaluate_model(model, loader, criterion, config, dataset_name)
         print(f"{dataset_name} - Test Loss: {metrics['test_loss']:.4f}, "
               f"Accuracy: {metrics['accuracy']:.4f}, "
               f"Precision: {metrics['precision']:.4f}, "

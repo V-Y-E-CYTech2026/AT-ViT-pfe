@@ -333,13 +333,13 @@ def visualize_small_branch_attention(model, test_loader, num_samples=20, save_di
             
             if len(batch_data) == 3:
                 images, labels, codes = batch_data
-                input_tensor = images.to(model.device)
+                input_tensor = images.to(next(model.parameters()).device)
             else:
                 images, labels = batch_data
                 codes = [f"sample_{batch_idx}_{i}" for i in range(images.shape[0])]
-                input_tensor = images.to(model.device)
+                input_tensor = images.to(next(model.parameters()).device)
                     
-            labels = labels.to(model.device)
+            labels = labels.to(next(model.parameters()).device)
             
             outputs = model(input_tensor)
             _, predicted = torch.max(outputs, 1)
@@ -428,12 +428,12 @@ def summarize_attention_patterns(model, test_loader, save_dir=None, layer_idx=-1
         for batch_data in tqdm(test_loader, desc="Computing attention summary"):
             if len(batch_data) == 3:
                 images, labels, codes = batch_data
-                input_tensor = images.to(model.device)
+                input_tensor = images.to(next(model.parameters()).device)
             else:
                 images, labels = batch_data
-                input_tensor = images.to(model.device)
+                input_tensor = images.to(next(model.parameters()).device)
                 
-            labels = labels.to(model.device)
+            labels = labels.to(next(model.parameters()).device)
             
             outputs = model(input_tensor)
             _, predicted = torch.max(outputs, 1)
@@ -507,7 +507,7 @@ def generate_gradcam_small_branch(model, test_loader, results_dir, device, num_i
     attention_dir = os.path.join(results_dir, "gradcam_embeddings_small_branch")
     os.makedirs(attention_dir, exist_ok=True)
     
-    target_layers = [model.patch_embed[0].proj]
+    target_layers = [model.model.patch_embed[0].proj]
     cam = GradCAM(model=model, target_layers=target_layers)
     
     inv_normalize = transforms.Normalize(
@@ -518,7 +518,7 @@ def generate_gradcam_small_branch(model, test_loader, results_dir, device, num_i
     model.eval()
     processed = 0
     
-    for batch_idx, batch_data in tqdm(test_loader, desc="Generating Grad-CAM"):
+    for batch_idx, batch_data in enumerate(tqdm(test_loader, desc="Generating Grad-CAM")):
         if len(batch_data) == 3:
             images, labels, codes = batch_data
             input_tensor = images.to(device)

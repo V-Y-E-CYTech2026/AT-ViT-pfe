@@ -10,7 +10,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 class DualInputPlantTraitDataset(Dataset):
     """Dataset class for loading original and segmented plant images."""
-    def __init__(self, dataframe, original_img_dir, segmented_img_dir, transform_orig=None, transform_seg=None, subset='train', target_variable='feuille_base_aigue'):
+    def __init__(self, dataframe, original_img_dir, segmented_img_dir, transform_orig=None, transform_seg=None, subset='train', target_variable='thorns'):
         """
         Args:
             dataframe (pd.DataFrame): DataFrame with 'code', 'train_test_set', and target_variable columns.

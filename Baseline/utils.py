@@ -21,16 +21,22 @@ def load_config():
         'base_dir': Path(os.getenv("BASE_DIR")),
         'csv_path': Path(os.getenv("BASE_DIR")) / os.getenv("CSV_FILENAME"),
         'original_img_dir': Path(os.getenv("ORIGINAL_IMG_DIR")),
+        'segmented_img_dir': Path(os.getenv("SEGMENTED_IMG_DIR")),
         'results_dir': Path(os.getenv("BASE_DIR")) / os.getenv("RESULTS_DIR"),
         'target_variable': os.getenv("TARGET_VARIABLE"),
         'original_noisy_base_dir': Path(os.getenv("ORIGINAL_NOISY_BASE_DIR")),
+        'segmented_noisy_base_dir': Path(os.getenv("SEGMENTED_NOISY_BASE_DIR")),
         'background_noise_dir': Path(os.getenv("ORIGINAL_NOISY_BASE_DIR")) / "background_only",
         'plant_noise_dir': Path(os.getenv("ORIGINAL_NOISY_BASE_DIR")) / "plant_only",
+        'plant_noise_seg_dir': Path(os.getenv("SEGMENTED_NOISY_BASE_DIR")) / "plant_only",
         'batch_size': 16,
-        'num_epochs': 70,
+        'num_epochs': 1,
         'learning_rate': 5e-5,
         'weight_decay': 0.1,
-        'device': torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+        # cuda 0 for personnal computer
+        'device': torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'),
+        # Added img_size, used in transforms for crossvit
+        'img_size': 224
     }
     config['results_dir'].mkdir(exist_ok=True)
     return config

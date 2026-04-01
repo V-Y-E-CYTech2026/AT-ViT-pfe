@@ -32,7 +32,7 @@ def load_config():
         'background_noise_seg_dir': Path(os.getenv("SEGMENTED_NOISY_BASE_DIR")) / "background_only",
         'plant_noise_seg_dir': Path(os.getenv("SEGMENTED_NOISY_BASE_DIR")) / "plant_only",
         'batch_size': 16,
-        'num_epochs': 3,
+        'num_epochs': 1,
         'learning_rate': 5e-5,
         'weight_decay': 0.1,
         # cuda 0 for personnal computer
