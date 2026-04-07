@@ -108,3 +108,6 @@ If you use this work, please cite the following:
 ## Ajouts pfe
 
 J'ai rajouté un script ```recreateCSV.py``` pour recréer le fichier CSV nécessaire en plus du dataset. 
+
+Tests d'ajout de couches KAN (Kolmogorov-Arnold Networks).
+Premier ajout : remplacement de la tete finale de classification par un KAN (efficient-Kan) avec une couche cachée.

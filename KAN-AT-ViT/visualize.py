@@ -166,7 +166,7 @@ def visualize_both_branches(model, test_loader, num_samples=453, save_dir=None, 
         save_dir: Directory to save visualizations.
         config: Configuration dictionary with 'device' key.
     """
-    save_dir = save_dir or os.path.join(config.get('results_dir', 'results'), "both_branches_visualizations")
+    save_dir = save_dir or os.path.join(config.get('results_dir', 'results'), "kan_at_vit_both_branches_visualizations")
     os.makedirs(save_dir, exist_ok=True)
 
     model.eval()
@@ -240,7 +240,7 @@ def summarize_attention_patterns(model, test_loader, save_dir=None, config=None)
         save_dir: Directory to save summary visualization.
         config: Configuration dictionary with 'results_dir' key.
     """
-    save_dir = save_dir or os.path.join(config.get('results_dir', 'results'), "attention_summaries")
+    save_dir = save_dir or os.path.join(config.get('results_dir', 'results'), "kan_at_vit_attention_summaries")
     os.makedirs(save_dir, exist_ok=True)
 
     model.eval()
@@ -298,7 +298,7 @@ def summarize_attention_patterns(model, test_loader, save_dir=None, config=None)
         ax.axis('off')
 
     plt.tight_layout()
-    summary_path = os.path.join(save_dir, 'attention_summary.png')
+    summary_path = os.path.join(save_dir, 'kan_at_vit_attention_summary.png')
     plt.savefig(summary_path, dpi=100, bbox_inches='tight')
     plt.close()
 
@@ -317,7 +317,7 @@ def visualize_original_branch_with_iou(model, test_loader, num_samples=453, save
         segmented_img_dir: Directory containing segmented images.
         config: Configuration dictionary with 'device' and 'results_dir' keys.
     """
-    save_dir = os.path.join(config.get('results_dir', 'results'), "original_branch_iou_visualizations")
+    save_dir = os.path.join(config.get('results_dir', 'results'), "kan_at_vit_original_branch_iou_visualizations")
     os.makedirs(save_dir, exist_ok=True)
 
     model.eval()
@@ -383,7 +383,7 @@ def visualize_original_branch_with_iou(model, test_loader, num_samples=453, save
 
     avg_iou = np.mean([result["iou"] for result in iou_results])
     print(f"Average IoU across {samples_processed} images: {avg_iou:.4f}")
-    iou_path = os.path.join(save_dir, "iou_results.json")
+    iou_path = os.path.join(save_dir, "kan_at_vit_iou_results.json")
     iou_output = {"samples": iou_results, "average_iou": float(avg_iou)}
     with open(iou_path, "w") as f:
         json.dump(iou_output, f, indent=4)
@@ -401,7 +401,7 @@ def generate_gradcam_visualizations(model, test_loader, num_samples=453, save_di
         output_size: Tuple of (width, height) for output images.
         config: Configuration dictionary with 'device' and 'results_dir' keys.
     """
-    save_dir = save_dir or os.path.join(config.get('results_dir', 'results'), "gradcam_visualizations")
+    save_dir = save_dir or os.path.join(config.get('results_dir', 'results'), "kan_at_vit_gradcam_visualizations")
     os.makedirs(save_dir, exist_ok=True)
 
     wrapped_model = DualInputWrapper(model).to(config['device'])
