@@ -27,8 +27,8 @@ def main():
     # ── Two-phase training hyper-parameters ───────────────────────────────
     # These extend (or override) whatever load_config() already provides.
     # Adjust values here or move them into your config file / YAML.
-    config.setdefault('num_epochs_phase1',  35)   # KAN head only
-    config.setdefault('num_epochs_phase2',  15)   # head + last N blocks
+    config.setdefault('num_epochs_phase1',  20)   # KAN head only
+    config.setdefault('num_epochs_phase2',  10)   # head + last N blocks
     config.setdefault('unfreeze_blocks',     2)   # how many blocks to unfreeze in phase 2
     config.setdefault('lr_phase1',         1e-3)  # aggressive LR — backbone is frozen
     config.setdefault('lr_phase2_head',    5e-4)  # head LR for phase 2
